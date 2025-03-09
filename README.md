@@ -41,4 +41,4 @@ kubectl exec -it lamp-wp-57865dd75b-dm7wx -c httpd-php-container -- curl http://
 
 ## You can also check from the browser using the external-IP of lamp-service.
 
-http://<External-IP>/index.php
+`http://<External-IP>/index.php`
