@@ -4,7 +4,7 @@ metadata:
   name: mysql-service
 spec:
   selector:
-    app: lamp-wp
+    app: lemp-wp
   ports:
     - protocol: TCP
       port: 3306
