@@ -13,14 +13,19 @@ P = POST variables ($_POST)
 C = COOKIE variables ($_COOKIE)
 S = SERVER variables ($_SERVER)
 
-## 2. Apply secret.yaml This secret stores MySQL credentials (values are base64-encoded).
-`kubectl apply -f secret.yaml`
+## 2. Apply secret files. This secret stores MySQL credentials (I use StringData but in reality it is better to use data block and use base64-encoded).
+```
+kubectl apply -f secret-1.yaml
+kubectl apply -f secret-2.yaml
+kubectl apply -f secret-3.yaml
+kubectl apply -f secret-4.yaml
+```
 
 ### Kubernetes Secrets 
 Kubernetes Secrets are used to store and manage sensitive data such as passwords, API keys, certificates, and other sensitive information. They allow you to securely store and access sensitive information that should not be stored in plain text within your Kubernetes resources.
 
 ## 3. Deployment (lamp-wp.yaml). This creates the lamp-wp deployment with two containers:
-httpd-php-container (PHP + Apache)
+nginx-php-container (PHP + Nginx) \
 mysql-container (MySQL)
 
 `kubectl apply -f deployment.yaml`
@@ -35,10 +40,13 @@ mysql-container (MySQL)
 
 `kubectl apply -f mysql-service.yaml`
 
-## You can check the below command if the httpd container is accessing the mysql server.
+## You can check the below command if the nginx container is accessing the mysql server.
 
-`kubectl exec -it lamp-wp-57865dd75b-dm7wx -c httpd-php-container -- curl http://localhost:80`
+`kubectl exec -it lemp-wp-785f475f98-k7nj8 -c nginx-php-container -- curl http://localhost:80`
 
 ## You can also check from the browser using the external-IP of lamp-service.
 
 `http://<External-IP>/index.php`
+
+
+## You can also use Apache + mysql (httpd) you can use to store secret data as database inside and all the secrets must be written inside one secret file.
