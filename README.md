@@ -40,11 +40,11 @@ mysql-container (MySQL)
 
 `kubectl apply -f mysql-service.yaml`
 
-## You can check the below command if the nginx container is accessing the mysql server.
+### You can check the below command if the nginx container is accessing the mysql server.
 
 `kubectl exec -it lemp-wp-785f475f98-k7nj8 -c nginx-php-container -- curl http://localhost:80`
 
-## You can also check from the browser using the external-IP of lamp-service.
+### You can also check from the browser using the external-IP of lamp-service.
 
 `http://<External-IP>/index.php`
 
